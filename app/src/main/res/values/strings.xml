@@ -3,4 +3,12 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_all_takoyaki">AllTakoyakiActivity</string>
+    <string name="search_hint">材料名、たこ焼き名で検索</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="material_text">材料</string>
+    <string name="how_to_make_text">作り方</string>
+    <string name="search">Search</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_takoyaki_detail">TakoyakiDetailActivity</string>
+    <string name="title_activity_region_takoyaki">RegionTakoyakiActivity</string>
 </resources>

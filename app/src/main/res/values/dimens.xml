@@ -3,4 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="material_name_width">250dp</dimen>
+    <dimen name="material_amount_width">90dp</dimen>
+    <dimen name="smallMargin">5dp</dimen>
+    <dimen name="smallPadding">5dp</dimen>
+    <dimen name="process_text">320dp</dimen>
+    <dimen name="process_number">20dp</dimen>
+    <dimen name="border">1dp</dimen>
 </resources>

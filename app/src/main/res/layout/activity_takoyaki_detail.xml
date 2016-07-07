@@ -1,0 +1,86 @@
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView"
+    android:layout_centerVertical="true"
+    android:layout_alignParentEnd="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/detailImg"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment"
+            android:layout_below="@+id/detailImg"
+            android:layout_margin="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/material_title"
+            android:text="@string/material_text"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:padding="10dp"
+            />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/matetial_lay">
+        </LinearLayout>
+
+
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-2240266982791830/2907454904"
+            ads:adSize="BANNER"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/how_to_make_title"
+            android:text="@string/how_to_make_text"
+            android:textSize="20sp"
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:padding="10dp"
+            />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/how_to_make_lay">
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

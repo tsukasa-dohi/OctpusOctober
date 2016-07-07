@@ -23,12 +23,129 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="460dp"
-        android:orientation="horizontal">
+        android:layout_height="450dp">
 
-    </LinearLayout>
+        <Button
+            android:layout_width="10dip"
+            android:layout_height="10dip"
+            android:id="@+id/CenterPoint"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+
+
+        <Button
+            android:id="@+id/Kinki"
+            android:layout_width="40dip"
+            android:layout_height="100dip"
+            android:text="近畿"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/CenterPoint"
+            android:layout_margin="5dip"
+            android:background="@drawable/kinki_style"
+
+            android:textColor="#000000"
+
+            />
+
+        <Button
+            android:id="@+id/Hokuriku"
+            android:layout_width="50dip"
+            android:layout_height="40dip"
+            android:text="北陸"
+            android:layout_toRightOf="@id/Kinki"
+            android:layout_alignTop="@id/Kinki"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/hokuriku_style"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/Tokai"
+            android:layout_width="50dip"
+            android:layout_height="40dip"
+            android:text="東海"
+            android:layout_toRightOf="@+id/Kinki"
+            android:layout_below="@id/Hokuriku"
+            android:layout_marginTop="5dip"
+            android:background="@drawable/tokai_style"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/Kanto"
+            android:layout_width="45dip"
+            android:layout_height="85dip"
+            android:text="関東"
+            android:layout_toRightOf="@id/Hokuriku"
+            android:layout_alignBottom="@id/Tokai"
+            android:background="@drawable/kanto_style"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/Tohoku"
+            android:layout_width="45dip"
+            android:layout_height="85dip"
+            android:text="東北"
+            android:layout_toRightOf="@id/Hokuriku"
+            android:layout_above="@id/Kanto"
+            android:layout_marginBottom="5dip"
+            android:background="@drawable/touhoku_style"
+            android:textColor="#000000"
+
+            />
+
+        <Button
+            android:id="@+id/Hokkaido"
+            android:layout_width="70dip"
+            android:layout_height="60dip"
+            android:text="北海道"
+            android:layout_toRightOf="@id/Kinki"
+            android:layout_above="@id/Tohoku"
+            android:layout_marginBottom="10dip"
+            android:layout_marginRight="10dip"
+
+            android:background="@drawable/hokkaido_style"
+            android:textColor="#000000"
+            android:layout_marginLeft="45dip" />
+
+        <Button
+            android:id="@+id/Tyugoku"
+            android:layout_width="50dip"
+            android:layout_height="40dip"
+            android:text="中国"
+            android:layout_toLeftOf="@id/Kinki"
+            android:layout_alignTop="@id/Kinki"
+            android:layout_marginBottom="5dip"
+            android:background="@drawable/tyugoku_style"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/Shikoku"
+            android:layout_width="50dip"
+            android:layout_height="40dip"
+            android:text="四国"
+            android:layout_below="@+id/Tyugoku"
+            android:layout_alignLeft="@id/Tyugoku"
+            android:background="@drawable/shikoku_style"
+            android:textColor="#000000"
+            />
+
+        <Button
+            android:id="@+id/Kyusyu"
+            android:layout_width="40dip"
+            android:layout_height="70dip"
+            android:text="九州"
+            android:layout_toLeftOf="@id/Tyugoku"
+            android:layout_alignTop="@id/Shikoku"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/kyusyu_style"
+            android:textColor="#000000"
+            />
+    </RelativeLayout>
 
     <include layout="@layout/btn" android:id="@+id/include_view_btn" />
 

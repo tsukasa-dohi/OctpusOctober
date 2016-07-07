@@ -1,19 +1,21 @@
 package furukawateam.octpusoctober;
 
+
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllTakoyakiActivity extends AppCompatActivity {
+public class RegionTakoyakiActivity extends Activity {
+
 
     private Dao dao;
     private ListView lv;
@@ -22,52 +24,22 @@ public class AllTakoyakiActivity extends AppCompatActivity {
     private int takoyaki_id;
     private String material_name;
     private int rid;
+    private ImageView no_data_view;
+    private Drawable no_data_img;
 
+    /**
+     * Called when the activity is first created.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        String region = intent.getStringExtra("region");
 
-        //フッターButtonのクリックイベント
-        Button btn1 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button1);
-        Button btn2 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button2);
-        Button btn3 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button3);
-        Button btn4 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button4);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AllTakoyakiActivity.this, TopActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AllTakoyakiActivity.this, MapActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        //初回起動時にデータベースを作成 MainActivityに記述
+        //データベース接続
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -79,10 +51,10 @@ public class AllTakoyakiActivity extends AppCompatActivity {
         dao = new Dao(db);
 
         //リストにたこ焼きテーブルの全データを格納
-        List<Dto> dtoList = dao.findAll();
+        List<Dto> dtoList = dao.findByRegion(region);
 
 
-        for(Dto dto: dtoList) {
+        for (Dto dto : dtoList) {
 
             takoyaki_id = dto.getTakoyaki_id();
             takoyaki_name = dto.getTakoyaki_name();
@@ -95,10 +67,10 @@ public class AllTakoyakiActivity extends AppCompatActivity {
             material_name = "";
 
             //材料の種類をひとつの文字列として生成
-            for ( int i = 0; i < dtoMaterialList.size(); ++i ) {
-                if(i==0){
+            for (int i = 0; i < dtoMaterialList.size(); ++i) {
+                if (i == 0) {
                     material_name = dtoMaterialList.get(i);
-                }else{
+                } else {
                     material_name = material_name + " , " + dtoMaterialList.get(i);
                 }
             }
@@ -118,6 +90,13 @@ public class AllTakoyakiActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
 
+        no_data_img = getResources().getDrawable(R.drawable.no_data);
+        no_data_view = (ImageView)findViewById(R.id.no_data_view);
+        no_data_view.setImageDrawable(no_data_img);
+        lv.setEmptyView(no_data_view);
+
+
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View view, int pos, long id) {
@@ -127,7 +106,6 @@ public class AllTakoyakiActivity extends AppCompatActivity {
                 Dto item = (Dto) lv.getItemAtPosition(pos);
                 int takoyaki_id = item.getTakoyaki_id();
                 detailIntent(takoyaki_id);
-
 
             }
         });
@@ -142,10 +120,5 @@ public class AllTakoyakiActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
 
 }
