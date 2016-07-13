@@ -81,11 +81,16 @@ public class TopActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_top, menu);
+
+        // SearchViewを取得する
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+
         return true;
     }
 

@@ -1,20 +1,24 @@
 package furukawateam.octpusoctober;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionTakoyakiActivity extends Activity {
+public class RegionTakoyakiActivity extends AppCompatActivity {
 
 
     private Dao dao;
@@ -34,6 +38,43 @@ public class RegionTakoyakiActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
+
+        //フッターButtonのクリックイベント
+        Button btn1 = (Button) findViewById(R.id.include_view_btn).findViewById(R.id.button1);
+        Button btn2 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button2);
+        Button btn3 = (Button) findViewById(R.id.include_view_btn).findViewById(R.id.button3);
+        Button btn4 = (Button) findViewById(R.id.include_view_btn).findViewById(R.id.button4);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegionTakoyakiActivity.this, TopActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegionTakoyakiActivity.this, AllTakoyakiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegionTakoyakiActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         Intent intent = getIntent();
         String region = intent.getStringExtra("region");
@@ -120,5 +161,23 @@ public class RegionTakoyakiActivity extends Activity {
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+
+        // SearchViewを取得する
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+
+        return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
 }

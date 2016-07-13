@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -140,6 +143,18 @@ public class AllTakoyakiActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TakoyakiDetailActivity.class);
         intent.putExtra("takoyaki_id", id);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+
+        // SearchViewを取得する
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+        return true;
     }
 
     @Override

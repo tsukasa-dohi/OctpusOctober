@@ -1,11 +1,17 @@
 package furukawateam.octpusoctober;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +22,7 @@ import com.google.android.gms.ads.AdView;
 import java.util.List;
 
 
-public class TakoyakiDetailActivity extends Activity {
+public class TakoyakiDetailActivity extends AppCompatActivity {
 
     private Dao dao;
     private Dto takoyaki_detail;
@@ -47,6 +53,46 @@ public class TakoyakiDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takoyaki_detail);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //フッターButtonのクリックイベント
+        Button btn1 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button1);
+        Button btn2 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button2);
+        Button btn3 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button3);
+        Button btn4 = (Button)findViewById(R.id.include_view_btn).findViewById(R.id.button4);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TakoyakiDetailActivity.this, TopActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TakoyakiDetailActivity.this, AllTakoyakiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TakoyakiDetailActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         //広告の表示
         AdView adView = (AdView)this.findViewById(R.id.adView);
@@ -160,6 +206,25 @@ public class TakoyakiDetailActivity extends Activity {
 
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+
+        // SearchViewを取得する
+        MenuItem searchItem = menu.findItem(R.id.menu_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+
+        return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 
 
